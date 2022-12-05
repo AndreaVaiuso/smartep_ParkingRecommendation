@@ -1,0 +1,17 @@
+Model build:
+curl -X POST -H "Content-Type: application/json" -d '{"dataset_filepath": "data/user_habits_reduced_old.csv", "output_model_filepath" : "out/newmodel.json"}' localhost:5000/model/build
+
+Model load:
+curl -X POST -H "Content-Type: application/json" -d '{"model_filepath":"out/user_habits_reduced_old_model.json"}' localhost:5000/model/load
+
+P recommendation:
+curl -X POST -H "Content-Type: application/json" -d '{"user_id":"93", "time_slot": "10:00:00", "user_db_filepath": "data/user_habits_reduced.csv"}' localhost:5000/recommendation/p
+
+FO recommendation:
+curl -X POST -H "Content-Type: application/json" -d '{"user_id":"93", "parking_lot": "4", "user_db_filepath": "data/user_habits_reduced.csv"}' localhost:5000/recommendation/fo
+
+PFO recommendation:
+curl -X POST -H "Content-Type: application/json" -d '{"user_id":"93", "user_db_filepath": "data/user_habits_reduced.csv"}' localhost:5000/recommendation/pfo
+
+Model evaluation:
+curl -X POST -H "Content-Type: application/json" -d '{"user_db_filepath": "data/user_habits_reduced.csv", "validation_set_filepath": "data/user_habits_reduced_valid.csv", "out_plots_dirpath" : "out/plots"}' localhost:5000/model/evaluation
